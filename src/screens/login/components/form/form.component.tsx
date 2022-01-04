@@ -1,11 +1,14 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import InputText from "../../../components/inputs/input-text/input-text-component";
 import Button from "../../../components/buttons/button.component";
-import * as yup from 'yup'
+import * as yup from 'yup';
 import {ErrorMessage} from "./form.types";
 import {ErrorDescription} from "./form.styled";
 import {userActions} from "../../../../store/user/user.slice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import { isAuthenticated } from "../../../../store/user/user.selectors";
+import { useLocation, useNavigate } from "react-router-dom";
+import {HomePath} from "../../../home/home.types";
 
 const errorInitial = ''
 
@@ -13,7 +16,21 @@ export default function Form() {
     const [data, setData] = useState({ email: '', password: '' })
     const [error, setError] = useState(errorInitial)
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const isUserAuthenticated = useSelector(isAuthenticated);
+
+    useEffect(
+        () => {
+            if(isUserAuthenticated)
+            {
+                const to = location.state?.from?.pathname || HomePath 
+                navigate(to)
+            }
+
+        },
+    [isUserAuthenticated])
 
     const resetError = useCallback(
         () => setError(errorInitial),
