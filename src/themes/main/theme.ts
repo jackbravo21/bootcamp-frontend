@@ -6,7 +6,6 @@ const theme = {
     palette,
     animation,
     border,
-
 };
 
 export default theme;

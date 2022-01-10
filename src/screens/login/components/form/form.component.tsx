@@ -1,12 +1,12 @@
-import React, {useCallback, useEffect, useState} from "react";
-import InputText from "../../../components/inputs/input-text/input-text-component";
-import Button from "../../../components/buttons/button.component";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import InputText from "../../../../components/inputs/input-text/input-text-component";
+import Button from "../../../../components/buttons/button/button.component";
 import * as yup from 'yup';
 import {ErrorMessage} from "./form.types";
 import {ErrorDescription} from "./form.styled";
 import {userActions} from "../../../../store/user/user.slice";
 import {useDispatch, useSelector} from "react-redux";
-import { isAuthenticated } from "../../../../store/user/user.selectors";
+import { isAuthenticated, isLoading } from "../../../../store/user/user.selectors";
 import { useLocation, useNavigate } from "react-router-dom";
 import {HomePath} from "../../../home/home.types";
 
@@ -19,6 +19,7 @@ export default function Form() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+    const isUserLoading = useSelector(isLoading);
     const isUserAuthenticated = useSelector(isAuthenticated);
 
     useEffect(
@@ -30,8 +31,14 @@ export default function Form() {
             }
 
         },
-    [isUserAuthenticated])
+    [isUserAuthenticated]
+    )
 
+    const buttonDescription = useMemo(
+        () => isUserLoading ? "Carregando..." : "Entrar",
+        [isUserLoading]
+    )
+    
     const resetError = useCallback(
         () => setError(errorInitial),
         []
@@ -87,7 +94,7 @@ export default function Form() {
             <InputText type='text' placeholder={'E-mail'} name={'email'} onChange={handleChange}/>
             <InputText type={'password'} placeholder={'Senha'} name={'password'} onChange={handleChange}/>
             <ErrorDescription>{error}</ErrorDescription>
-            <Button primary onClick={onSubmit}>Entrar</Button>
+            <Button primary onClick={onSubmit}>{buttonDescription}</Button>
         </>
     )
 }
