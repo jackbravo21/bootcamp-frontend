@@ -46,10 +46,9 @@ export default function Form() {
 
     const handleChange = useCallback(
         (event: any) => setData(prevState => ({
-            //copio todos os dados do state com spreedOperator;
+            
             ...prevState,
             [event.target.name]: event.target.value,
-            //agora ele estara retornando nosso objeto, com o original e as copias, devido o spreed;
 
         })),
         [setData]
@@ -57,7 +56,7 @@ export default function Form() {
 
     //hook callback;
     const validation = useCallback(
-        //definindo funcao como asyncrona, permite que promessas sejam resolvidas, impede o codigo de continuar antes de resolver;
+    
         async () => {
             const schema = yup.object().shape({
                 email: yup.string().required(ErrorMessage.Required).email(ErrorMessage.EmailBadFormat),

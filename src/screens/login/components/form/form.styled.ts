@@ -7,5 +7,3 @@ export const ErrorDescription = styled.p`
     font-size: 13px;
     margin-bottom: 35px
 `
-
-// margin-bottom: 55px;

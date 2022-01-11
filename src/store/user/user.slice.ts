@@ -13,7 +13,7 @@ const initialState: UserState = {
 const userSlice = createSlice({
     name: "user",
     initialState,
-    reducers,                           //recebe dados, persiste dados;
+    reducers,
 })
 
 export const {reducer: userReducer, actions: userActions} = userSlice;

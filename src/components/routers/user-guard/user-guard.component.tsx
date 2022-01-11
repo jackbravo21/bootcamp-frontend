@@ -1,8 +1,8 @@
 import {useSelector} from "react-redux";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import {LoginPath} from "../../../login/login.types";
-import { isAuthenticated } from "../../../../store/user/user.selectors";
+import {LoginPath} from "../../../screens/login/login.types";
+import { isAuthenticated } from "../../../store/user/user.selectors";
 
 export default function UserGuard({children}: any){
 
@@ -20,7 +20,6 @@ export default function UserGuard({children}: any){
         },
         [isUserAuthenticated]
     )
-
 
     if(isUserAuthenticated) 
     {

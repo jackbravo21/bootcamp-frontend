@@ -13,16 +13,6 @@ import UserGuard from "./components/routers/user-guard/user-guard.component";
 
 function App() {
 
-/*
-  const navigate = useNavigate();
-  useEffect(
-    () => {
-      navigate(HomePath)
-    },
-    []
-  )
-*/
-
   return (
     
     <Provider store={store}>

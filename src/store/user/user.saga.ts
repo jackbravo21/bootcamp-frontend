@@ -4,7 +4,6 @@ import sessionService from "../../services/session/session.service";
 import {AccessTokenStorageKey, UserAction} from "./user.types";
 import {GetSession, PostSessionNew} from "../../services/user/user.types";
 
-//* identifica ela como funcao generator, que eh uma funcao asyncrona e interavel, toda a funcao retorna um dado e termina, na generator ela pode gerar varios tipos de dados;
 export function* login(props: UserAction)
 {
     try 
@@ -32,7 +31,7 @@ export function* login(props: UserAction)
 
 function* watchLogin()
 {
-    yield takeEvery("user/login", login);           //takeEvery = pega todas as funcoes 
+    yield takeEvery("user/login", login);
 }
 
 export function* loginByToken() {

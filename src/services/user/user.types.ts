@@ -8,7 +8,7 @@ export type PostSessionNewPayload = {
 }
 type PostSessionNewData = {
     user: Pick<User, 'id' | 'name'>
-} & Pick<Session, 'accessToken'>                                //pick eh o extends, herdando atributos de um objeto;
+} & Pick<Session, 'accessToken'>
 export type PostSessionNew = Response<PostSessionNewData>
 
 type GetSessionData = {

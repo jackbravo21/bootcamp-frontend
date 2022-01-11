@@ -7,10 +7,8 @@ import Form from "./components/form/form.component";
 export default function Login()
 {
 
-    //fragment nao vai ser renderizado na tela, nao eh impresso, ao contrario da div;
     return(
         <React.Fragment>
-            {/* comentario */}
 
     <Container>
         <Wrapper container justifyContent={"center"}>
@@ -25,10 +23,6 @@ export default function Login()
         </Wrapper>
 
     </Container>
-
-        {/*<Button primary={true}>Entrar</Button>*/}
-        {/*<Button primary={false}>Entrar</Button>*/}
-        {/*<Button secondary={true}>Sair</Button>*/}
 
         </React.Fragment>
 
